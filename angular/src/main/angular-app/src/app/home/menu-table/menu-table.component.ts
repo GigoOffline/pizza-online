@@ -105,7 +105,7 @@ export class MenuTableComponent implements OnInit, AfterViewInit {
     //   disableClear: true,
     // });
     this.sort.active = this._cookieService.get('cookie-active');
-    this.sort.direction = this._cookieService.get('cookie-direction');
+    // this.sort.direction = this._cookieService.get('cookie-direction');
 
     this.myDataSource.sort = this.sort;
   }

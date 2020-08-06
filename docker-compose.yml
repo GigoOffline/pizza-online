@@ -92,16 +92,16 @@ services:
     networks:
       - app-tier
 
-  frontend:
-#    image: stea1th/pizza-ang:latest
-    build: ./angular/src/main/angular-app
-    container_name: angular
-    depends_on:
-      - authorization
-    ports:
-      - 90:80
-    networks:
-      - app-tier
+#  frontend:
+##    image: stea1th/pizza-ang:latest
+#    build: ./angular/src/main/angular-app
+#    container_name: angular
+#    depends_on:
+#      - authorization
+#    ports:
+#      - 90:80
+#    networks:
+#      - app-tier
 
   prometheus:
     image: prom/prometheus
