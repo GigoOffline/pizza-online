@@ -18,7 +18,6 @@ export class PersonDetailsComponent implements OnInit {
   isLinear = true;
   isDisabled = true;
   personDetails: PersonDetails;
-  orderDateTime: OrderDateTime;
 
 
   @Output() setOrderDateTime = new EventEmitter();
@@ -76,21 +75,12 @@ export class PersonDetailsComponent implements OnInit {
   }
 
   completeOrder() {
-    this._data.getCompleteOrderTime().subscribe(d => {
-      this.orderDateTime = d;
-      this.setOrderDateTime.emit(this.orderDateTime);
+    this._data.getCompleteOrderTime().subscribe(data => {
+      this.setOrderDateTime.emit(data);
       this.refreshCart.emit();
       this.goForward.emit();
     });
   }
-}
-
-export interface OrderDateTime {
-  year: number;
-  monthValue: number;
-  dayOfMonth: number;
-  hour: number;
-  minute: number;
 }
 
 

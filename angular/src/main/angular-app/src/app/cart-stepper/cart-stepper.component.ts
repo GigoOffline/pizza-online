@@ -37,11 +37,7 @@ export class CartStepperComponent implements OnInit {
   }
 
   public setOrderDateTime(event) {
-    this.orderDateTime = this.attachZero(event.dayOfMonth) + '.'
-      + this.attachZero(event.monthValue) + '.'
-      + event.year + ' '
-      + this.attachZero(event.hour) + ':'
-      + this.attachZero(event.minute);
+    this.orderDateTime = event;
   }
 
   public getProductsInCart() {
