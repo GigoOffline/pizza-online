@@ -64,13 +64,16 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Order now</ng-template>
-        <div fxLayout="column" fxFlex="100%" fxLayoutAlign="center center">
+        <div fxLayout="column" fxLayoutAlign="left left">
           <app-paypal-payment class="full-width" (completeOrder)="completeOrder()"></app-paypal-payment>
-          <div>
+          <button mat-button (click)="isDisabled = false; completeOrder()">per Invoice</button>
+          <div fxLayoutAlign="center center">
             <button mat-button matStepperPrevious (click)="isDisabled = true">Back</button>
             <button mat-button (click)="stepper.reset(); isDisabled = true">Reset</button>
           </div>
         </div>
+
+
       </mat-step>
     </mat-vertical-stepper>
   </mat-card>
