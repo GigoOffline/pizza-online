@@ -28,13 +28,12 @@ public class OrderController {
     }
 
     @GetMapping("/complete")
-    public ResponseEntity<LocalDateTime> completeOrder(Principal principal) {
+    public ResponseEntity<Order> completeOrder(Principal principal) {
         String keycloak = principal.getName();
         log.info("Completing order for keycloak: {}", keycloak);
         Order order = orderService.complete(keycloak);
-        LocalDateTime complete = order.getCompleted();
-        return complete == null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) :
-                new ResponseEntity<>(complete, HttpStatus.OK);
+        return order == null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) :
+                new ResponseEntity<>(order, HttpStatus.OK);
     }
 
     @GetMapping("/interval")

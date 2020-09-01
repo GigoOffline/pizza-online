@@ -16,6 +16,7 @@ import {ProductCostElement} from "../model/product-cost-element";
 })
 export class CartStepperComponent implements OnInit {
 
+  pdf: string;
   isLinear = true;
   orderDateTime: string;
   productCostList: ProductCostElement[];
@@ -37,7 +38,14 @@ export class CartStepperComponent implements OnInit {
   }
 
   public setOrderDateTime(event) {
+    console.log(event);
     this.orderDateTime = event;
+  }
+
+  public setPdf(event) {
+    console.log(event);
+    this.pdf = event;
+    console.log(this.pdf);
   }
 
   public getProductsInCart() {

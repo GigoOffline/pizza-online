@@ -35,4 +35,7 @@ public class Order extends AbstractBaseEntity {
 
     @Column(columnDefinition = "person_id")
     private Integer personId;
+
+    @Column(columnDefinition = "pdf")
+    private String pdf;
 }

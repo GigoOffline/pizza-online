@@ -10,7 +10,8 @@ CREATE TABLE ORDERS
     id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     person_id INTEGER   NOT NULL,
     created   TIMESTAMP NOT NULL,
-    completed TIMESTAMP
+    completed TIMESTAMP,
+    pdf       CHAR(255)
 );
 
 

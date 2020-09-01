@@ -4,6 +4,7 @@ package de.stea1th.orderservice.service;
 import de.stea1th.orderservice.dto.TimeIntervalDto;
 import de.stea1th.orderservice.entity.Order;
 import de.stea1th.orderservice.kafka.producer.OrderProductKafkaProducer;
+import de.stea1th.orderservice.kafka.producer.PDFKafkaProducer;
 import de.stea1th.orderservice.kafka.producer.PersonKafkaProducer;
 import de.stea1th.orderservice.num.TimeInterval;
 import de.stea1th.orderservice.repository.OrderRepository;
@@ -26,12 +27,14 @@ public class OrderServiceImpl implements OrderService {
     private final PersonKafkaProducer personKafkaProducer;
     private final OrderProductKafkaProducer orderProductKafkaProducer;
     private final OrderRepository orderRepository;
+    private final PDFKafkaProducer pdfKafkaProducer;
 
     @Autowired
-    public OrderServiceImpl(PersonKafkaProducer personKafkaProducer, OrderProductKafkaProducer orderProductKafkaProducer, OrderRepository orderRepository) {
+    public OrderServiceImpl(PersonKafkaProducer personKafkaProducer, OrderProductKafkaProducer orderProductKafkaProducer, OrderRepository orderRepository, PDFKafkaProducer pdfKafkaProducer) {
         this.personKafkaProducer = personKafkaProducer;
         this.orderProductKafkaProducer = orderProductKafkaProducer;
         this.orderRepository = orderRepository;
+        this.pdfKafkaProducer = pdfKafkaProducer;
     }
 
     @SneakyThrows
@@ -68,6 +71,8 @@ public class OrderServiceImpl implements OrderService {
         Order order = getUncompletedOrderByPersonKeycloak(keycloak);
         if (orderProductKafkaProducer.isOrderProductExists(order.getId())) {
             order.setCompleted(LocalDateTime.now());
+            String path = pdfKafkaProducer.printPDF(order);
+            order.setPdf(path);
             order = orderRepository.save(order);
             createEmptyOrder(order.getPersonId());
             log.info("Order complete for keycloak: {}", keycloak);
