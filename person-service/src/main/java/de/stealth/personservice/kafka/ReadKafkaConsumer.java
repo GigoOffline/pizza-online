@@ -30,6 +30,13 @@ public class ReadKafkaConsumer {
     }
 
 
-
+    @SneakyThrows
+    @KafkaListener(topics="${person.invoiceAddress}")
+    @SendTo
+    public String getInvoiceAddress(String message) {
+        log.info("Receiving with Kafka keycloak: {}", message);
+        Person person = personService.get(Integer.valueOf(message));
+        return objectMapper.writeValueAsString(person);
+    }
 
 }
