@@ -1,0 +1,48 @@
+
+div.header {
+    position: running(header);
+}
+
+div.footer {
+    display: block;
+    margin-top: 0.5cm;
+    position: running(footer);
+}
+
+.footer {
+    text-align: center;
+}
+
+.address-block {
+    height: 100px;
+}
+
+.logo {
+    width: 275px;
+}
+
+.page-count {
+    text-align: right;
+}
+
+.next-page {
+    page-break-before: always
+}
+
+table {
+    width: 100%;
+}
+
+#products {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#pagenumber:before {
+    content: counter(page);
+}
+
+#pagecount:before {
+    content: counter(pages);
+}

@@ -22,6 +22,7 @@ export class PersonDetailsComponent implements OnInit {
 
   @Output() setOrderDateTime = new EventEmitter();
   @Output() refreshCart = new EventEmitter();
+  @Output() setPdf = new EventEmitter();
 
   @Output() goForward = new EventEmitter();
 
@@ -76,7 +77,9 @@ export class PersonDetailsComponent implements OnInit {
 
   completeOrder() {
     this._data.getCompleteOrderTime().subscribe(data => {
-      this.setOrderDateTime.emit(data);
+      this.setOrderDateTime.emit(data.completed);
+      console.log(data.pdf)
+      this.setPdf.emit(data.pdf);
       this.refreshCart.emit();
       this.goForward.emit();
     });

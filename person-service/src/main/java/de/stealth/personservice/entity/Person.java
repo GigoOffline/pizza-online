@@ -25,7 +25,7 @@ public class Person extends AbstractBaseEntity {
     @NotBlank
     private String keycloak;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
 

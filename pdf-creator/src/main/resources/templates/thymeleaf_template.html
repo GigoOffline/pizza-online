@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="style.css"/>
+</head>
+
+<body>
+<table>
+    <tr>
+        <td class="right"><img class="logo" th:src="logo.png" alt="logo"/></td>
+    </tr>
+</table>
+
+
+<table>
+    <tr class="address-block">
+        <td class="bottom right" style="white-space:pre">
+            <strong>Thymeleaf Example Project</strong>
+            Thymeleaf Street 42
+            12345 Thymecity
+
+            <b>Phone:</b> 0100 1234 1111
+            <b>E-Mail:</b> example@test.com
+        </td>
+    </tr>
+    <tr class="address-block">
+        <td class="bottom" style="white-space:pre">
+         <strong th:text="${name}"></strong>
+         [[${street}]]
+         [[${city}]] </td>
+         <td class="bottom right">
+
+         Thymecity, 01. January 2018</td>
+    </tr>
+</table>
+
+
+
+<table id="products">
+    <tr>
+        <th scope="col" th:text="name"></th>
+        <th scope="col" th:text="property"></th>
+        <th scope="col" th:text="quantity"></th>
+        <th scope="col" th:text="price"></th>
+        <th scope="col" th:text="discount"></th>
+        <th scope="col" th:text="totalPrice"></th>
+    </tr>
+
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.property}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.discount}"></td>
+        <td th:text="${item.totalPrice}"></td>
+    </tr>
+</table>
+</br>
+<div>
+    Der Gesamtpreis beträgt: <p th:text="${totalPrice}"></p>
+</div>
+
+<div class="footer page-count">
+    Page <span id="pagenumber"></span> of <span id="pagecount"></span>
+</div>
+</body>
+</html>
