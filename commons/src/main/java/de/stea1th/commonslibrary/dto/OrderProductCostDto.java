@@ -18,4 +18,8 @@ public class OrderProductCostDto implements Serializable {
     private int productCostId;
 
     private int quantity;
+
+    private BigDecimal price;
+
+    private Integer discount;
 }

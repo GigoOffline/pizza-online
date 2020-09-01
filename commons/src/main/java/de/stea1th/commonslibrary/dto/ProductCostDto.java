@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ProductCostDto extends AbstractBaseDto {
 
+    private Integer productId;
+
     private String property;
 
     private BigDecimal price;
